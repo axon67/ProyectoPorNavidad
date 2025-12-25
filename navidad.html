@@ -14,19 +14,20 @@
 
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* sube el contenido */
     color: #fff;
-    overflow: hidden;
+    overflow-y: auto; /* permite scroll en celular */
 }
 
 .container {
     text-align: center;
     padding: 20px;
     max-width: 90%;
+    margin-top: 40px;
 }
 
 h1 {
@@ -53,14 +54,14 @@ h1 {
 
 .message {
     display: none;
-    margin-top: 30px;
-    font-size: 1rem;
-    line-height: 1.6;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
     animation: fadeIn 2s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -70,8 +71,8 @@ h1 {
     top: -10px;
     color: white;
     animation: fall linear infinite;
-    font-size: 1em;
     opacity: 0.8;
+    pointer-events: none;
 }
 
 @keyframes fall {
@@ -87,7 +88,7 @@ h1 {
 <div class="container">
     <h1>🎄 Feliz Navidad 🎄</h1>
 
-    <button class="play-btn" onclick="startExperience()">▶ Play</button>
+    <button class="play-btn" id="playBtn" onclick="startExperience()">▶ Play</button>
 
     <div class="message" id="message">
         <p>
@@ -96,7 +97,7 @@ h1 {
             donde todo el mundo se abraza y yo solo pienso en ti.
         </p>
         <p>
-            A veces cierro los ojos y me imagino tu sonrisa iluminando tus noches,  
+            A veces cierro los ojos y me imagino tu sonrisa iluminando mis noches,  
             como si la distancia no fuera nada, porque seamos honestos, mi amor:  
             tú eres esa presencia que me calma, y te lo digo desde el corazón.
         </p>
@@ -118,26 +119,28 @@ h1 {
 function startExperience() {
     const music = document.getElementById("music");
     const message = document.getElementById("message");
+    const playBtn = document.getElementById("playBtn");
 
     music.play();
     message.style.display = "block";
+    playBtn.style.display = "none";
 
     createSnow();
 }
 
 function createSnow() {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 35; i++) {
         let snow = document.createElement("div");
         snow.className = "snow";
         snow.innerHTML = "❄";
         snow.style.left = Math.random() * 100 + "vw";
         snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
-        snow.style.fontSize = (Math.random() * 10 + 10) + "px";
+        snow.style.fontSize = (Math.random() * 10 + 12) + "px";
         document.body.appendChild(snow);
 
         setTimeout(() => {
             snow.remove();
-        }, 10000);
+        }, 12000);
     }
 }
 </script>
