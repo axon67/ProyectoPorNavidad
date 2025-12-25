@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feliz Navidad ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.play-btn {
+    background: #c62828;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.play-btn:hover {
+    transform: scale(1.05);
+    background: #e53935;
+}
+
+.message {
+    display: none;
+    margin-top: 30px;
+    font-size: 1rem;
+    line-height: 1.6;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Nieve */
+.snow {
+    position: absolute;
+    top: -10px;
+    color: white;
+    animation: fall linear infinite;
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎄 Feliz Navidad 🎄</h1>
+
+    <button class="play-btn" onclick="startExperience()">▶ Play</button>
+
+    <div class="message" id="message">
+        <p>
+            Qué extraño, qué extraño se siente ver tantas luces en esta Navidad y no verte a ti,  
+            tú que eres la luz que me hubiese gustado que brillara a mi lado en estas fechas  
+            donde todo el mundo se abraza y yo solo pienso en ti.
+        </p>
+        <p>
+            A veces cierro los ojos y me imagino tu sonrisa iluminando tus noches,  
+            como si la distancia no fuera nada, porque seamos honestos, mi amor:  
+            tú eres esa presencia que me calma, y te lo digo desde el corazón.
+        </p>
+        <p>
+            Sabes, el día que por fin te tenga entre mis brazos, mi corazón,  
+            será el día más bonito de mi vida, te lo prometo.
+        </p>
+        <p><strong>Feliz Navidad, mi corazón ❤️</strong></p>
+        <p><strong>Feliz Navidad ❤️</strong></p>
+    </div>
+</div>
+
+<audio id="music">
+    <source src="cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+</audio>
+
+<script>
+function startExperience() {
+    const music = document.getElementById("music");
+    const message = document.getElementById("message");
+
+    music.play();
+    message.style.display = "block";
+
+    createSnow();
+}
+
+function createSnow() {
+    for (let i = 0; i < 30; i++) {
+        let snow = document.createElement("div");
+        snow.className = "snow";
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * 100 + "vw";
+        snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        snow.style.fontSize = (Math.random() * 10 + 10) + "px";
+        document.body.appendChild(snow);
+
+        setTimeout(() => {
+            snow.remove();
+        }, 10000);
+    }
+}
+</script>
+
+</body>
+</html>
